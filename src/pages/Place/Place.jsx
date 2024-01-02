@@ -17,7 +17,7 @@ export default function Place() {
     // 일정 시간이 지난 후에 이미지를 변경
     const intervalId = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % imgArray.length);
-    }, 5000);
+    }, 4000);
 
     return () => clearInterval(intervalId);
   }, []);
