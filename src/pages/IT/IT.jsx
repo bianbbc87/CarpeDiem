@@ -1,6 +1,15 @@
-import {RouletteWrapper, ITContainer, PersonImage, YellowButton} from "@/styles/styles.jsx";
+import {
+  RouletteWrapper,
+  ITContainer,
+  PersonImage,
+  YellowButton,
+  ITTitle,
+  ITContent,
+  GroomImage,
+  Carpediem,
+} from "@/styles/styles.jsx";
 import "@/styles//IT.css";
-import {useLocation, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function IT() {
   const location = useLocation();
@@ -11,18 +20,19 @@ export default function IT() {
 
   const handleVoice = () => {
     navigate("/voice-recognition");
-  }
+  };
 
   return (
     <RouletteWrapper>
-<ITContainer>
-    <PersonImage />
-    <h4>{data[0].title}</h4>
-    <div className="container">
-      {data[1].content}
-    </div>
-    <YellowButton onClick={handleVoice}>carpe diem!</YellowButton>
-</ITContainer>
+      <ITContainer>
+        <GroomImage />
+        <PersonImage />
+        <ITTitle>{data[0].title}</ITTitle>
+        <ITContent>{data[1].content}</ITContent>
+        <YellowButton onClick={handleVoice}>
+          <Carpediem />
+        </YellowButton>
+      </ITContainer>
     </RouletteWrapper>
-  )
+  );
 }
