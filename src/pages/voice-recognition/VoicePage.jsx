@@ -13,11 +13,12 @@ import Loading from '@/components/Loading/Loading';
 import RecordingGIF from '@/assets/images/Spinner/recording.gif';
 import PulseGIF from '@/assets/images/Spinner/pulse.gif';
 import Reset from '@/assets/images/voice-recognition/reset.svg';
+import TextPage from './TextPage';
 
 const VoicePage = () => {
   const navigate = useNavigate();
   const { transcript, listening, resetTranscript } = useSpeechRecognition();
-  const [currentPage, setCurrentPage] = useState("voice");
+  const [isVoice, setIsVoice] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const toggleListening = () => {
     if (listening) {
@@ -28,17 +29,15 @@ const VoicePage = () => {
   }
   const handleSubmit = async () => {
     setIsLoading(true);
-    setTimeout(() => {
-      getKeywordsTest(transcript, navigate);
-    //getKeywords(transcript, navigate);
-  }, 2000);
+    getKeywords(transcript, navigate);
 }
 return (
   <>
+    {isVoice ?
     <Wrapper>
       {isLoading && <Loading loadingText="룰렛을 생성중입니다..." />}
       <PageBody>
-      <SliderButton currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <SliderButton isVoice={isVoice} setIsVoice={setIsVoice} />
       <Instructions className='instruction'>하단의 버튼을 눌러 오늘의 활동을 계획해보세요</Instructions>
       <VoiceRecord>
         <RecordButton onClick={toggleListening}>
@@ -57,7 +56,10 @@ return (
       </ResetSection>
       {transcript === "" ? <DisabledButton>룰렛 만들러 가기</DisabledButton>: <SubmitButton onClick={handleSubmit}>룰렛 만들러 가기</SubmitButton>}
       </PageBody>
-    </Wrapper>
+    </Wrapper> :
+    <TextPage />
+    }
+    
 
   </>
 )
@@ -197,7 +199,7 @@ const ResetIcon = styled.div`
 `;
 
 const SubmitButton = styled.div`
-  position: fixed;
+  position: absolute;
   bottom: 53px;
   display: flex;
   width: 336px;

@@ -6,7 +6,7 @@ import Pen from '@/assets/images/Pen.svg'
 import { useState } from 'react';
 import Loading from '../../components/Loading/Loading';
 import { useNavigate } from 'react-router-dom';
-import { getKeywordsTest } from '@/api/getKeywords.jsx';
+import { getKeywords } from '@/api/getKeywords.jsx';
 
 const TextPage = () => {
   const navigate = useNavigate();
@@ -15,10 +15,7 @@ const TextPage = () => {
   const [currentPage, setCurrentPage] = useState("text");
   const handleSubmit = async () => {
     setIsLoading(true);
-    setTimeout(() => {
-      getKeywordsTest(content, navigate);
-    //getKeywords(content, navigate);
-  }, 2000);
+    getKeywords(content, navigate);
 }
 return (
 <>
@@ -107,7 +104,7 @@ const TextContainer = styled.textarea`
 `;
 
 const SubmitButton = styled.div`
-  position: fixed;
+  position: absolute;
   bottom: 53px;
   display: flex;
   width: 336px;
