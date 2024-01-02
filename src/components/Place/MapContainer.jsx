@@ -70,15 +70,13 @@ const MapContainer = ({ searchPlace }) => {
   }, [searchPlace]);
 
   let placeLength = 5;
-  if (placeLength < 5) {
+  if (Places.length < 5) {
     placeLength = Places.length;
   }
 
   // 이미지 넘기기 버튼
   const onNextImage = () => {
-    if (Places.length > Index + 1) {
-      setIndex((prevIndex) => (prevIndex + 1) % placeLength);
-    }
+    setIndex((prevIndex) => (prevIndex + 1) % placeLength);
   };
 
   const onPrevImage = () => {
