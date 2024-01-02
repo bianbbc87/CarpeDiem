@@ -13,6 +13,7 @@ import Loading from '@/components/Loading/Loading';
 import RecordingGIF from '@/assets/images/Spinner/recording.gif';
 import PulseGIF from '@/assets/images/Spinner/pulse.gif';
 import Reset from '@/assets/images/voice-recognition/reset.svg';
+import { getRouletteDataTest } from '../../api/ApiClient';
 
 const VoicePage = () => {
   const navigate = useNavigate();
@@ -28,8 +29,11 @@ const VoicePage = () => {
   }
   const handleSubmit = async () => {
     setIsLoading(true);
+    setTimeout(() => {
+      getRouletteDataTest(transcript, navigate);
     //getRouletteData(transcript, navigate);
-  }
+  }, 2000);
+}
 return (
   <>
     <Wrapper>
@@ -126,7 +130,7 @@ const TextContainer = styled.div`
   display: flex;
   padding-left: 15px;
   align-itemes: center;
-  width: 338px;
+  width: 323px;
   min-height: 51.126px;
   margin-bottom: 
   flex-shrink: 0;
