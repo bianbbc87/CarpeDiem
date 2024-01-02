@@ -132,7 +132,7 @@ const MapContainer = ({ searchPlace }) => {
             </Circles>
           </>
         ) : (
-          <PlaceBox>추천 장소 데이터가 없습니다 :{"("}</PlaceBox>
+          <PlaceNullBox>추천 장소 데이터가 없습니다 :{"("}</PlaceNullBox>
         )}
       </div>
       <AnotherButton to="/voice-recognition">
@@ -171,9 +171,24 @@ const PlaceBox = styled.div`
   height: 140px;
   border-radius: 10px;
   border: 1px solid var(--gray1, #cacdd4);
-  background: var(--icon-color, #fff);
   padding: 15px;
   font-size: 13px;
+`;
+
+const PlaceNullBox = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  color: #8a898e;
+  width: 200px;
+  height: 140px;
+  border-radius: 10px;
+  border: 1px solid var(--gray1, #cacdd4);
+  padding: 15px;
+  font-size: 12px;
 `;
 
 const AdressText = styled.div`
