@@ -6,11 +6,11 @@ export const theme = {
 
   red: "#D22C26",
   orange: "#FFA751",
-  yellow: "#FFE259",
+  yellow: "#FFE03D",
   black: "#000000",
   green: "#34BA05",
   white: "#FFFFFF",
-  gray: "#DDDDDD",
+  gray: "#CFCFCF",
   blue: "#00A3FF",
 };
 

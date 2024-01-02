@@ -24,9 +24,9 @@ const VoicePage = () => {
     if (listening) {
       SpeechRecognition.stopListening();
     } else {
-      SpeechRecognition.startListening({ language: 'ko-KR', continuous: true });
+      SpeechRecognition.startListening({ language: "ko-KR", continuous: true });
     }
-  }
+  };
   const handleSubmit = async () => {
     setIsLoading(true);
     getPrompt(transcript, navigate);
@@ -86,7 +86,7 @@ const Instructions = styled.div`
   margin-bottom: 15px;
 `;
 const VoiceRecord = styled(PageBody)`
-  margin-bottom : 75px;
+  margin-bottom: 75px;
 `;
 const RecordButton = styled.div`
   display: flex;
@@ -96,11 +96,11 @@ const RecordButton = styled.div`
   height: 149.465px;
   border-radius: 100px;
   flex-shrink: 0;
-  background: linear-gradient(164deg, #7CE0FF 12.46%, #0047FF 88.89%);
-  border: 4.118px solid #72D3FF;
+  background: linear-gradient(164deg, #7ce0ff 12.46%, #0047ff 88.89%);
+  border: 4.118px solid #72d3ff;
   box-shadow: 0px 5px 10px 0px rgba(36, 0, 255, 0.25);
   cursor: pointer;
-  `;
+`;
 
 const PulseContainer = styled.div`
   width: 72.369px;
@@ -145,11 +145,12 @@ const TextContainer = styled.div`
 `;
 
 const TextInput = styled.textarea`
+  font-family: "Pretendard";
   width: 290px;
   min-height: 45px;
   flex-shrink: 0;
   border-radius: 10px;
-  background: var(--icon-color, #FFF);
+  background: var(--icon-color, #fff);
   border: none;
   resize: none;
   outline: none;
@@ -163,7 +164,7 @@ const SpinnerContainer = styled.div`
   top: 12px;
   width: 33px;
   height: 33px;
-  .recordingGIF{
+  .recordingGIF {
     width: 33px;
     height: 33px;
   }
@@ -180,20 +181,20 @@ const SmallMicIcon = styled.div`
 `;
 
 const ResetSection = styled.div`
-display: flex;
-justify-content: space-between;
-width: 91.5px;
-height: 18px;
-margin-top: 29px;
-flex-shrink: 0;
-color: #8A898E;
-font-size: 15px;
-cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  width: 91.5px;
+  height: 18px;
+  margin-top: 29px;
+  flex-shrink: 0;
+  color: #8a898e;
+  font-size: 15px;
+  cursor: pointer;
 `;
 
 const ResetIcon = styled.div`
   background: no-repeat center url(${Reset});
-  fill: #8A898E;
+  fill: #8a898e;
   width: 18px;
   height: 18px;
 `;
@@ -207,13 +208,13 @@ const SubmitButton = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  border: 1px solid var(--strok_1, #CFCFCF);
+  border: 1px solid var(--strok_1, #cfcfcf);
   background: var(--black, #000);
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
 `;
 
 const DisabledButton = styled(SubmitButton)`
-  background: var(--gray1, #CACDD4);
+  background: var(--gray1, #cacdd4);
   cursor: none;
 `;

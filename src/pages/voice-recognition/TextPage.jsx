@@ -63,7 +63,7 @@ const Instructions = styled.div`
 `;
 
 const VoiceRecord = styled(PageBody)`
-  margin-bottom : 75px;
+  margin-bottom: 75px;
 `;
 const RecordButton = styled.div`
   display: flex;
@@ -73,10 +73,10 @@ const RecordButton = styled.div`
   height: 149.465px;
   border-radius: 100px;
   flex-shrink: 0;
-  background: linear-gradient(164deg, #FFEC44 12.46%, #FFB800 88.89%);
-  border: 4.118px solid #FFEE5F;
+  background: linear-gradient(164deg, #ffec44 12.46%, #ffb800 88.89%);
+  border: 4.118px solid #ffee5f;
   box-shadow: 0px 5px 10px 0px rgba(255, 138, 0, 0.25);
-  `;
+`;
 
 const MicIcon = styled.div`
   display: flex;
@@ -90,15 +90,17 @@ const MicIcon = styled.div`
 
 const TextSection = styled.div`
   position: relative;
+  font-family: "Pretendard";
 `;
 
 const TextContainer = styled.textarea`
+  font-family: "Pretendard";
   width: 306px;
   height: 250.775px;
   flex-shrink: 0;
   border-radius: 10px;
-  border: 1px solid var(--gray1, #CACDD4);
-  background: var(--icon-color, #FFF);
+  border: 1px solid var(--gray1, #cacdd4);
+  background: var(--icon-color, #fff);
   resize: none;
   outline: none;
   font-size: 15px;
@@ -114,13 +116,13 @@ const SubmitButton = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  border: 1px solid var(--strok_1, #CFCFCF);
+  border: 1px solid var(--strok_1, #cfcfcf);
   background: var(--black, #000);
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
 `;
 
 const DisabledButton = styled(SubmitButton)`
-  background: var(--gray1, #CACDD4);
+  background: var(--gray1, #cacdd4);
   cursor: none;
 `;

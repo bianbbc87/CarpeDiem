@@ -53,15 +53,15 @@ const PlaceContainer = styled.div`
 `;
 
 const MainText = styled.div`
-  font-size: 18px;
+  font-size: 21px;
   font-weight: 600;
-  margin: 30px 0px 14px 30px;
+  margin: 100px 0px 15px 30px;
 `;
 
 const MainImage = styled.img`
-  margin-top: 20px;
-  height: 150px;
-  margin-bottom: 10px;
+  margin-top: 30px;
+  height: 190px;
+  margin-bottom: 25px;
 `;
 
 const ContentWrap = styled.div`
