@@ -7,7 +7,7 @@ import SmallMic from '@/assets/images/mic_s.svg'
 import NotiBalloon from '@/assets/images/notificate_balloon.svg'
 import { useState } from 'react';
 import SliderButton from '@/components/voice-recognition/SlideButton';
-import { getRouletteData } from '@/api/ApiClient';
+import { getKeywords, getKeywordsTest } from '@/api/getKEywords';
 import { useNavigate } from 'react-router-dom';
 import Loading from '@/components/Loading/Loading';
 import RecordingGIF from '@/assets/images/Spinner/recording.gif';
@@ -28,8 +28,11 @@ const VoicePage = () => {
   }
   const handleSubmit = async () => {
     setIsLoading(true);
-    //getRouletteData(transcript, navigate);
-  }
+    setTimeout(() => {
+      getKeywordsTest(transcript, navigate);
+    //getKeywords(transcript, navigate);
+  }, 2000);
+}
 return (
   <>
     <Wrapper>
@@ -126,7 +129,7 @@ const TextContainer = styled.div`
   display: flex;
   padding-left: 15px;
   align-itemes: center;
-  width: 338px;
+  width: 323px;
   min-height: 51.126px;
   margin-bottom: 
   flex-shrink: 0;

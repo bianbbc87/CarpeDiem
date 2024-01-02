@@ -1,7 +1,5 @@
 import Spinner from "@/assets/images/Spinner/Spinner2.gif";
 import styled from "styled-components";
-import { apiClient } from "@/api/ApiClient";
-import { useState } from "react";
 
 const Wrapper = styled.div`
   position: fixed;
