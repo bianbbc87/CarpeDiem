@@ -2,15 +2,21 @@ import styled from 'styled-components'
 import 'regenerator-runtime'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { Wrapper } from '@/styles/styles';
-import Mic from '../../assets/images/mic.svg'
-import SmallMic from '../../assets/images/mic_s.svg'
-import NotiBalloon from '../../assets/images/notificate_balloon.svg'
+import Mic from '@/assets/images/mic.svg'
+import SmallMic from '@/assets/images/mic_s.svg'
+import NotiBalloon from '@/assets/images/notificate_balloon.svg'
 import { useState } from 'react';
-import SliderButton from '../../components/voice-recognition/SlideButton';
+import SliderButton from '@/components/voice-recognition/SlideButton';
+import { getRouletteData } from '@/api/ApiClient';
+import { useNavigate } from 'react-router-dom';
+import Loading from '@/components/Loading/Loading';
+import RecordingGIF from '@/assets/images/Spinner/recording.gif';
 
 const VoicePage = () => {
+  const navigate = useNavigate();
   const { transcript, listening } = useSpeechRecognition();
   const [currentPage, setCurrentPage] = useState("voice");
+  const [isLoading, setIsLoading] = useState(false);
   const toggleListening = () => {
     if (listening) {
       SpeechRecognition.stopListening();
@@ -18,9 +24,14 @@ const VoicePage = () => {
       SpeechRecognition.startListening({ language: 'ko-KR', continuous: true });
     }
   }
+  const handleSubmit = async () => {
+    setIsLoading(true);
+    //getRouletteData(transcript, navigate);
+  }
 return (
   <>
     <Wrapper>
+      {isLoading && <Loading loadingText="룰렛을 생성중입니다..." />}
       <PageBody>
       <SliderButton currentPage={currentPage} setCurrentPage={setCurrentPage} />
       <Instructions className='instruction'>하단의 버튼을 눌러 오늘의 활동을 계획해보세요</Instructions>
@@ -28,12 +39,14 @@ return (
         <RecordButton onClick={toggleListening}>
           <MicIcon />
         </RecordButton>
-        {listening ? '음성인식 중지' : '음성인식 시작'}
       </VoiceRecord>
       <TextSection>
-        <TextContainer className="transcript" value={transcript} onChange={() => {}} />
-        <SmallMicIcon />
+        <TextContainer>
+          <TextInput className="transcript" value={transcript} onChange={() => {}} />
+          {listening ? <SpinnerContainer><img src={RecordingGIF} className='recordingGIF'></img></SpinnerContainer> : <SmallMicIcon />}
+        </TextContainer>
       </TextSection>
+      <SubmitButton onClick={handleSubmit}>전송하기</SubmitButton>
       </PageBody>
     </Wrapper>
 
@@ -91,16 +104,46 @@ const TextSection = styled.div`
   position: relative;
 `;
 
-const TextContainer = styled.textarea`
+const TextContainer = styled.div`
+  display: flex;
+  padding-left: 15px;
+  align-itemes: center;
   width: 338px;
-  height: 51.126px;
+  min-height: 51.126px;
+  margin-bottom: 
   flex-shrink: 0;
   border-radius: 10px;
   border: 1px solid var(--gray1, #CACDD4);
   background: var(--icon-color, #FFF);
+  line-height: 51px;
+  .transcript:: -webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const TextInput = styled.textarea`
+  width: 290px;
+  min-height: 45px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: var(--icon-color, #FFF);
+  border: none;
   resize: none;
   outline: none;
-  line-height: 51px;
+  line-height: 45px;
+  overflow-y: auto;
+`;
+
+const SpinnerContainer = styled.div`
+  position: absolute;
+  right: 15px;
+  top: 12px;
+  width: 33px;
+  height: 33px;
+  .recordingGIF{
+    width: 33px;
+    height: 33px;
+  }
 `;
 
 const SmallMicIcon = styled.div`
@@ -111,4 +154,18 @@ const SmallMicIcon = styled.div`
   height: 20px;
   flex-shrink: 0;
   background: no-repeat center url(${SmallMic});
+`;
+
+const SubmitButton = styled.div`
+  position: fixed;
+  bottom: 53px;
+  display: flex;
+  width: 336px;
+  height: 51px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid var(--strok_1, #CFCFCF);
+  background: var(--black, #000);
+  color: #FFFFFF;
 `;

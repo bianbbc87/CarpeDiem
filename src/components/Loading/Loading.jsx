@@ -1,5 +1,7 @@
 import Spinner from "@/assets/images/Spinner/Spinner2.gif";
 import styled from "styled-components";
+import { apiClient } from "@/api/ApiClient";
+import { useState } from "react";
 
 const Wrapper = styled.div`
   position: fixed;
@@ -21,7 +23,7 @@ const LoadingContainer = styled.div`
   flex-direction: column;
   margin-top: 55%;
   align-items: center;
-  color: #00a3ff;
+  color: #fff;
   text-align: center;
   font-family: Pretendard;
   font-size: 15px;
@@ -29,12 +31,13 @@ const LoadingContainer = styled.div`
   line-height: normal;
 `;
 
-export default function Loading() {
+export default function Loading({loadingText}) {
+  // 룰렛으로 데이터 전달
   return (
     <Wrapper>
       <LoadingContainer>
         <img src={Spinner} alt="로딩" width="30%" />
-        룰렛을 생성하고 있습니다..
+        {loadingText}
       </LoadingContainer>
     </Wrapper>
   );
