@@ -4,6 +4,8 @@ import R_Tool from "@/assets/images/Roulette/RouletteTool.svg";
 import R_Pin from "@/assets/images/Roulette/RoulettePin.svg";
 import Result from "@/assets/images/Roulette/ResultBox.svg";
 import Prev from "@/assets/images/Roulette/PrevBox.svg";
+import ITLogo from "@/assets/images/IT/logo2.svg";
+import ITPerson from "@/assets/images/IT/Person.svg";
 
 // 페이지별로 용도 나눠주세요
 /**  샘플 페이지 스타일 **/
@@ -11,8 +13,85 @@ export const Sample = styled.div`
   background-color: ${theme.yellow};
 `;
 
-/**  메인 페이지 스타일 **/
-// ...
+/**  랜딩 페이지 스타일 **/
+export const LogoImage = styled.div`
+margin-top: 104px;
+  width: 190px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  background-image: url(${ITLogo});
+  background-repeat: no-repeat;
+`;
+
+export const StyledParagraph = styled.div`
+  margin-top: 45px;
+font-family: Nanum Pen;
+font-size: 16px; 
+line-height: 1.5; 
+color: #333; 
+text-align: center;
+`;
+
+export const BlackButton = styled.button`
+  color: white;
+  font-family: Pretendard;
+  margin-top: 52px;
+    width: 309px;
+    height: 74px;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    border-radius: 7%;
+`;
+export const YellowButtonR = styled.button`
+  color: blue;
+  font-family: Nanum Pen;
+  margin-top: 17px;
+    width: 309px;
+    height: 74px;
+    justify-content: center;
+    align-items: center;
+    background-color: yellow;
+    border: 1px solid #dadad7;
+    border-radius: 8%;
+`;
+
+/** 알쓸신잡 페이지 **/
+export const ITContainer = styled.div`
+position: absolute;
+top: 18px;
+  width: 95%;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  align-items: center;
+  border-radius: 3%;
+  text-align: center;
+`;
+
+export const PersonImage = styled.div`
+margin-top: 107px;
+  width: 125px;
+  height: 202px;
+  display: flex;
+  background-image: url(${ITPerson});
+  background-repeat: no-repeat;
+`;
+
+export const YellowButton = styled(YellowButtonR)`
+  color: blue;
+  font-family: Nanum Pen;
+  margin-top: 80px;
+    width: 309px;
+    height: 74px;
+    justify-content: center;
+    align-items: center;
+    background-color: yellow;
+    border: 1px solid #dadad7;
+    border-radius: 8%;
+`;
 
 /**  룰렛 페이지 **/
 export const Wrapper = styled.div`
