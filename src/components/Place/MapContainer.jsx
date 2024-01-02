@@ -123,7 +123,7 @@ const MapContainer = ({ searchPlace }) => {
           ))}
         </Circles>
       </div>
-      <AnotherButton>다른 룰렛 만들러 가기</AnotherButton>
+      <AnotherButton to="/roulette">다른 룰렛 만들러 가기</AnotherButton>
     </PlacePageWrap>
   );
 };
