@@ -1,12 +1,13 @@
-import styled from "styled-components";
-import { Wrapper } from "../../styles/styles";
-import SliderButton from "../../components/voice-recognition/SlideButton";
-import NotiBalloon from "../../assets/images/notificate_balloon.svg";
-import Pen from "@/assets/images/Pen.svg";
-import { useState } from "react";
-import Loading from "../../components/Loading/Loading";
-import { useNavigate } from "react-router-dom";
-import { getKeywordsTest } from "@/api/getKeywords.jsx";
+import styled from 'styled-components';
+import { Wrapper } from '../../styles/styles'
+import SliderButton from '../../components/voice-recognition/SlideButton';
+import NotiBalloon from '../../assets/images/notificate_balloon.svg'
+import Pen from '@/assets/images/Pen.svg'
+import { useState } from 'react';
+import Loading from '../../components/Loading/Loading';
+import { useNavigate } from 'react-router-dom';
+import { getKeywords } from '@/api/getKeywords.jsx';
+import { getPrompt } from '../../api/getKeywords';
 
 const TextPage = () => {
   const navigate = useNavigate();
@@ -15,48 +16,31 @@ const TextPage = () => {
   const [currentPage, setCurrentPage] = useState("text");
   const handleSubmit = async () => {
     setIsLoading(true);
-    setTimeout(() => {
-      getKeywordsTest(content, navigate);
-      //getKeywords(content, navigate);
-    }, 2000);
-  };
-  return (
-    <>
-      <Wrapper>
-        {isLoading && <Loading loadingText="룰렛을 생성중입니다..." />}
-        <PageBody>
-          <SliderButton
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-          />
-          <Instructions className="instruction">
-            하단의 텍스트를 입력해 활동을 계획해보세요
-          </Instructions>
-          <VoiceRecord>
-            <RecordButton>
-              <MicIcon />
-            </RecordButton>
-          </VoiceRecord>
-          <TextSection>
-            <TextContainer
-              value={content}
-              onChange={(e) => {
-                setContent(e.currentTarget.value);
-              }}
-              placeholder="오늘은 무엇을 하고 싶나요?"
-            />
-          </TextSection>
-          {content === "" ? (
-            <DisabledButton>입력하기</DisabledButton>
-          ) : (
-            <SubmitButton onClick={handleSubmit}>입력하기</SubmitButton>
-          )}
-        </PageBody>
-      </Wrapper>
-    </>
-  );
-};
-export default TextPage;
+    //getKeywords(content, navigate);
+    getPrompt(content, navigate);
+}
+return (
+<>
+  <Wrapper>
+  {isLoading && <Loading loadingText="룰렛을 생성중입니다..." />}
+    <PageBody>
+      <SliderButton currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <Instructions className='instruction'>하단의 텍스트를 입력해 활동을 계획해보세요</Instructions>
+      <VoiceRecord>
+        <RecordButton>
+          <MicIcon />
+        </RecordButton>
+      </VoiceRecord>
+      <TextSection>
+        <TextContainer value={content} onChange={(e)=> {setContent(e.currentTarget.value)}} placeholder='오늘은 무엇을 하고 싶나요?' />
+      </TextSection>
+      {content === "" ? <DisabledButton>입력하기</DisabledButton>: <SubmitButton onClick={handleSubmit}>입력하기</SubmitButton>}
+    </PageBody>
+  </Wrapper>
+</>
+)
+}
+export default TextPage
 
 const PageBody = styled.div`
   display: flex;
@@ -124,7 +108,7 @@ const TextContainer = styled.textarea`
 `;
 
 const SubmitButton = styled.div`
-  position: fixed;
+  position: absolute;
   bottom: 53px;
   display: flex;
   width: 336px;

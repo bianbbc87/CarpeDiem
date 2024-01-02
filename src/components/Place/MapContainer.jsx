@@ -5,7 +5,6 @@ import prevButton from "../../assets/images/Place/prevButton.png";
 import { Link } from "react-router-dom";
 
 const { kakao } = window;
-
 const MapContainer = ({ searchPlace }) => {
   const [Places, setPlaces] = useState([]);
   const [Index, setIndex] = useState(0);
@@ -28,89 +27,60 @@ const MapContainer = ({ searchPlace }) => {
   };
 
   useEffect(() => {
-    // 키워드로 장소를 검색
-    searchPlaces();
+    const fetchData = async () => {
+      try {
+        const currentCoordinate = await getCurrentCoordinate();
+        console.log(currentCoordinate);
 
-    // 키워드 검색을 요청하는 함수
-    async function searchPlaces() {
-      var keyword = searchPlace;
-      const currentCoordinate = await getCurrentCoordinate();
-      console.log(currentCoordinate);
-      var options = {
-        location: currentCoordinate,
-        radius: 10000,
-        sort: kakao.maps.services.SortBy.DISTANCE,
-      };
+        const container = document.getElementById("myMap");
+        const options = {
+          center: currentCoordinate,
+          level: 3,
+          sort: kakao.maps.services.SortBy.DISTANCE,
+        };
 
-      // 장소검색 객체를 통해 키워드로 장소검색을 요청
-      ps.keywordSearch(keyword, placesSearchCB, options);
-    }
+        const map = new kakao.maps.Map(container, options);
 
-    // 장소검색이 완료됐을 때 호출되는 콜백함수
-    function placesSearchCB(data, status) {
-      if (status === kakao.maps.services.Status.OK) {
-        console.log(data);
-        displayPlaces(data);
-      } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-        Swal.fire("검색 결과가 존재하지 않습니다.");
-        return;
-      } else if (status === kakao.maps.services.Status.ERROR) {
-        Swal.fire("검색 결과 중 오류가 발생했습니다.");
-        return;
-      }
-    }
+        const ps = new kakao.maps.services.Places();
+        ps.keywordSearch(searchPlace, placesSearchCB, {
+          location: currentCoordinate,
+          sort: kakao.maps.services.SortBy.DISTANCE,
+        });
 
-    // 검색 결과 목록과 마커를 표출하는 함수
-    function displayPlaces(places) {
-      var listEl = document.getElementById("placesList"),
-        menuEl = document.getElementById("menu_wrap"),
-        fragment = document.createDocumentFragment(),
-        bounds = new kakao.maps.LatLngBounds(),
-        listStr = "";
+        function placesSearchCB(data, status) {
+          if (status === kakao.maps.services.Status.OK) {
+            let bounds = new kakao.maps.LatLngBounds();
 
-      // 검색 결과 목록에 추가된 항목들을 제거
-      removeAllChildNods(listEl);
+            for (let i = 0; i < data.length; i++) {
+              bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+            }
 
-      // 검색결과 항목들을 검색결과 목록 Element에 추가
-      listEl.appendChild(fragment);
-      menuEl.scrollTop = 0;
-    }
-    const container = document.getElementById("myMap");
-    const currentCoordinate = getCurrentCoordinate();
-    const options = {
-      center: new kakao.maps.LatLng(33.450701, 126.570667),
-      location: currentCoordinate,
-      sort: kakao.maps.services.SortBy.DISTANCE,
-    };
-    const map = new kakao.maps.Map(container, options);
-
-    const ps = new kakao.maps.services.Places();
-
-    ps.keywordSearch(searchPlace, placesSearchCB);
-
-    function placesSearchCB(data, status) {
-      if (status === kakao.maps.services.Status.OK) {
-        let bounds = new kakao.maps.LatLngBounds();
-
-        for (let i = 0; i < data.length; i++) {
-          bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+            map.setBounds(bounds);
+            setPlaces(data);
+          }
         }
-
-        map.setBounds(bounds);
-        setPlaces(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
       }
-    }
+    };
+
+    fetchData();
   }, [searchPlace]);
+
+  let placeLength = 5;
+  if (Places.length < 5) {
+    placeLength = Places.length;
+  }
 
   // 이미지 넘기기 버튼
   const onNextImage = () => {
-    if (Places.length > Index + 1) {
-      setIndex((prevIndex) => (prevIndex + 1) % 5);
-    }
+    setIndex((prevIndex) => (prevIndex + 1) % placeLength);
   };
 
   const onPrevImage = () => {
-    setIndex((prevIndex) => (prevIndex === 0 ? 4 : prevIndex - 1));
+    setIndex((prevIndex) =>
+      prevIndex === 0 ? placeLength - 1 : prevIndex - 1
+    );
   };
 
   // 더 알아보기 지도 주소
@@ -192,7 +162,7 @@ const MapContainer = ({ searchPlace }) => {
               ></PrevNextButton>
             </PlaceWrap>
             <Circles>
-              {Array.from({ length: 5 }, (_, i) => (
+              {Array.from({ length: placeLength }, (_, i) => (
                 <Circle key={i} active={i === Index} />
               ))}
             </Circles>
