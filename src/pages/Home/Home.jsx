@@ -1,9 +1,9 @@
 import {
-    Page,
-    HomeImage,
-    StyledTitle,
-    CarpediemText,
-  } from "@/styles/styles.jsx";
+  Page,
+  HomeImage,
+  StyledTitle,
+  CarpediemLogo,
+} from "@/styles/styles.jsx";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
@@ -29,7 +29,9 @@ export default function IT() {
   return (
     <Page>
       <HomeImage onClick={handlePage} />
-      <StyledTitle>carpe diem</StyledTitle>
+      <StyledTitle>
+        <CarpediemLogo />
+      </StyledTitle>
     </Page>
   );
 }
