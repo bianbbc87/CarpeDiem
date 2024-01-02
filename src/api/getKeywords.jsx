@@ -1,5 +1,8 @@
 import axios from "axios";
 import FormData from 'form-data';
+import { apiClient } from './ApiClient';
+
+axios.defaults.withCredentials = true;
 
 export const getKeywords= ({textData, navigate}) => {
   let data = new FormData();
@@ -8,17 +11,16 @@ export const getKeywords= ({textData, navigate}) => {
   let config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: '',
+    url: `http://3.39.187.248/search/result`,
     headers: { 
-      'Authorization': '', 
-      ...data.getHeaders()
     },
+    withCredentials: true,
     data : data
   };
   
   axios.request(config)
   .then((response) => {
-    console.log(JSON.stringify(response.data));
+    console.log(response);
     navigate("/roulette", {
       state: {
         data : response.data.map(element => element.optiontitle)
@@ -29,6 +31,45 @@ export const getKeywords= ({textData, navigate}) => {
     console.log(error);
   });
 }
+
+export const getPrompt = async (textData, navigate) => {
+  const apiKey = import.meta.env.VITE_APP_GPT_KEY;
+  let config = {
+    method: 'post',
+    maxBodyLength: Infinity,
+    url: '/api/v1/chat/completions',
+    headers: {
+      'Content-Type' : 'application/json',
+      'Authorization' : `Bearer ${apiKey}`
+    },
+    withCredentials: true,
+    data : {
+      'model' : "gpt-3.5-turbo",
+      "messages": [
+        { "role": "system", "content": "You are keyword creator, you have to generate 10 keywords of activity or places related to my questions. Each keyword should be seperated by comma. There's no need to numbering keywords. you must respond within 10 seconds."},
+        { "role": "user", "content": `${textData}`},
+      ],
+      'max_tokens': 500,
+    }
+  }
+  console.log(textData);
+  axios.request(config)
+  .then((response) => {
+    console.log(response.data.choices[0].message.content);
+    const keywords = response.data.choices[0].message.content;
+    const keywordsArr = keywords.split(", ");
+    console.log(keywordsArr);
+    navigate("/roulette", {
+      state: {
+        data : keywordsArr,
+      }
+    })
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+};
+
 
 // 룰렛 페이지로 정보 넘기는 테스트용 함수
 export const getKeywordsTest = (textData, navigate) => {
