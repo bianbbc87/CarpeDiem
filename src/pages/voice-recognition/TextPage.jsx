@@ -6,7 +6,6 @@ import Pen from '@/assets/images/Pen.svg'
 import { useState } from 'react';
 import Loading from '../../components/Loading/Loading';
 import { useNavigate } from 'react-router-dom';
-import { getKeywords } from '@/api/getKeywords.jsx';
 import { getPrompt } from '../../api/getKeywords';
 
 const TextPage = () => {

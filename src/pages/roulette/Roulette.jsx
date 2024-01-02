@@ -29,7 +29,6 @@ function Roulette() {
 
   console.log("data : ", Data);
 
-  const [data, setData] = useState([]);
   const [mustSpin, setMustSpin] = useState(false); //룰렛이 회전 애니메이션을 시작
   const [prizeNumber, setPrizeNumber] = useState(0); //당첨 인덱스
   const [spinState, setSpinState] = useState(false);

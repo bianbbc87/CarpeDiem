@@ -1,6 +1,5 @@
 import axios from "axios";
 import FormData from 'form-data';
-import { apiClient } from './ApiClient';
 
 axios.defaults.withCredentials = true;
 

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-const SliderButton = ({isVoice, setIsVoice}) => {
+const SliderButton = ({isVoice}) => {
   const navigate = useNavigate();
 return (
 <>
