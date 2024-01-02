@@ -10,6 +10,7 @@ import ITPerson from "@/assets/images/IT/Person.svg";
 import Groom from "@/assets/images/IT/goorm.svg";
 import Carpe from "@/assets/images/IT/carpediem.svg";
 import CarpeText from "@/assets/images/IT/carpediemtext.svg";
+import HomeLogo from "@/assets/images/Home/logo.svg";
 
 // 슬라이드 애니메이션 키프레임
 const slideInUp = (percentage) => keyframes`
@@ -214,7 +215,6 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 390px;
-  border: 1px solid blue;
   background-color: #fff;
   align-items: center;
 `;
@@ -231,6 +231,16 @@ export const CarpediemText = styled.div`
   height: 80px;
   background-image: url(${CarpeText});
   background-repeat: no-repeat;
+`;
+
+export const CarpediemLogo = styled.div`
+  margin-top: -50px;
+  width: 118px;
+  height: 45px;
+  background-image: url(${HomeLogo});
+  background-repeat: no-repeat;
+  transform: scale(1.3);
+  animation: ${slideInUp("70%")} 0.8s ease-out;
 `;
 
 export const RouletteWrapper = styled.div`
