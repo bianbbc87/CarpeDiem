@@ -12,7 +12,7 @@ export default function Place() {
   const [Place, setPlace] = useState("");
 
   useEffect(() => {
-    setPlace("부산 수영장");
+    setPlace("유리 공예 공방");
 
     // 일정 시간이 지난 후에 이미지를 변경
     const intervalId = setInterval(() => {

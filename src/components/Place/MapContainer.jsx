@@ -104,7 +104,9 @@ const MapContainer = ({ searchPlace }) => {
                     fill="black"
                   />
                 </Icon>
-                <span>{Places[Index].phone}</span>
+                <span>
+                  {Places[Index].phone ? Places[Index].phone : "번호 정보 없음"}
+                </span>
               </PhoneWrap>
               <ButtonWrap>
                 <LinkButton onClick={onMoreInfoClick}>더 알아보기</LinkButton>
@@ -123,7 +125,9 @@ const MapContainer = ({ searchPlace }) => {
           ))}
         </Circles>
       </div>
-      <AnotherButton>다른 룰렛 만들러 가기</AnotherButton>
+      <AnotherButton to="/voice-recognition">
+        다른 룰렛 만들러 가기
+      </AnotherButton>
     </PlacePageWrap>
   );
 };
@@ -148,6 +152,11 @@ const PlaceText = styled.div`
 `;
 
 const PlaceBox = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  position: relative;
+
   width: 200px;
   height: 140px;
   border-radius: 10px;
@@ -165,7 +174,6 @@ const AdressText = styled.div`
 const PhoneWrap = styled.div`
   align-items: center;
   margin-top: 8px;
-  margin-bottom: 35px;
   display: flex;
 `;
 
@@ -190,6 +198,8 @@ const LinkButton = styled.div`
   padding: 4px 8px;
   background-color: #00a3ff;
   border-radius: 40px;
+  position: absolute;
+  bottom: 20px;
 `;
 
 const Circles = styled.div`
