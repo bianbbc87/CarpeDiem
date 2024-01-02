@@ -7,6 +7,7 @@ import { useState } from 'react';
 import Loading from '../../components/Loading/Loading';
 import { useNavigate } from 'react-router-dom';
 import { getKeywords } from '@/api/getKeywords.jsx';
+import { getPrompt } from '../../api/getKeywords';
 
 const TextPage = () => {
   const navigate = useNavigate();
@@ -15,7 +16,8 @@ const TextPage = () => {
   const [currentPage, setCurrentPage] = useState("text");
   const handleSubmit = async () => {
     setIsLoading(true);
-    getKeywords(content, navigate);
+    //getKeywords(content, navigate);
+    getPrompt(content, navigate);
 }
 return (
 <>
