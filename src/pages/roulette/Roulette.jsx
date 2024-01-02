@@ -17,73 +17,17 @@ function Roulette() {
   const location = useLocation();
 
   // 데이터 받아오기
-  // const Data = location.state?.Data || null;
+  const data2 = location.state.data || null;
+  console.log("data2 : ", data2);
 
-  //더미 데이터
-  const data2 = [
-    {
-      optionTitle: "SAMSUNG 에어컨",
-    },
-    {
-      optionTitle: "꽝",
-    },
-    {
-      optionTitle: "Apple Vision Pro",
-    },
-    {
-      optionTitle: "LG TV",
-    },
-    {
-      optionTitle: "SAMSUNG 에어컨",
-    },
-    {
-      optionTitle: "꽝",
-    },
-    {
-      optionTitle: "Apple Vision Pro",
-    },
-    {
-      optionTitle: "LG TV",
-    },
-    {
-      optionTitle: "SAMSUNG 에어컨",
-    },
-    {
-      optionTitle: "꽝",
-    },
-    {
-      optionTitle: "Apple Vision Pro",
-    },
-    {
-      optionTitle: "LG TV",
-    },
-    {
-      optionTitle: "SAMSUNG 에어컨",
-    },
-    {
-      optionTitle: "꽝",
-    },
-    {
-      optionTitle: "Apple Vision Pro",
-    },
-    {
-      optionTitle: "LG TV",
-    },
-    {
-      optionTitle: "SAMSUNG 에어컨",
-    },
-    {
-      optionTitle: "꽝",
-    },
-    {
-      optionTitle: "Apple Vision Pro",
-    },
-    {
-      optionTitle: "LG TV",
-    },
-  ];
+  let key = 0;
+  const Data = data2.map(() => {
+    const value = data2[key++];
+    console.log("vaule", value);
+    return { option: value };
+  });
 
-  const Data = data2.map((item) => ({ option: item.optionTitle }));
+  console.log("data : ", Data);
 
   const [data, setData] = useState([]);
   const [mustSpin, setMustSpin] = useState(false); //룰렛이 회전 애니메이션을 시작
