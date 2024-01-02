@@ -95,7 +95,7 @@ function Roulette() {
         <RoulettePin />
         <Wheel
           spinDuration={0.2}
-          startingOptionIndex={Math.floor(Math.random() * data.length)}
+          startingOptionIndex={prizeNumber}
           mustStartSpinning={mustSpin}
           prizeNumber={prizeNumber}
           data={Data}
@@ -105,6 +105,7 @@ function Roulette() {
           textColors={["#000"]}
           fontSize={[15]}
           backgroundColors={["#00A3FF", "#FFB13D"]}
+          pointerProps={{ src: "@/assets/images/Roulette/RoulettePin.svg" }}
         />
       </RouletteTool>
       {!spinState ? (

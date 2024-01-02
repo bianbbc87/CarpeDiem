@@ -1,12 +1,12 @@
-import styled from 'styled-components';
-import { Wrapper } from '../../styles/styles'
-import SliderButton from '../../components/voice-recognition/SlideButton';
-import NotiBalloon from '../../assets/images/notificate_balloon.svg'
-import Pen from '@/assets/images/Pen.svg'
-import { useState } from 'react';
-import Loading from '../../components/Loading/Loading';
-import { useNavigate } from 'react-router-dom';
-import { getKeywordsTest } from '@/api/getKeywords.jsx';
+import styled from "styled-components";
+import { Wrapper } from "../../styles/styles";
+import SliderButton from "../../components/voice-recognition/SlideButton";
+import NotiBalloon from "../../assets/images/notificate_balloon.svg";
+import Pen from "@/assets/images/Pen.svg";
+import { useState } from "react";
+import Loading from "../../components/Loading/Loading";
+import { useNavigate } from "react-router-dom";
+import { getKeywordsTest } from "@/api/getKeywords.jsx";
 
 const TextPage = () => {
   const navigate = useNavigate();
@@ -17,31 +17,46 @@ const TextPage = () => {
     setIsLoading(true);
     setTimeout(() => {
       getKeywordsTest(content, navigate);
-    //getKeywords(content, navigate);
-  }, 2000);
-}
-return (
-<>
-  <Wrapper>
-  {isLoading && <Loading loadingText="룰렛을 생성중입니다..." />}
-    <PageBody>
-      <SliderButton currentPage={currentPage} setCurrentPage={setCurrentPage} />
-      <Instructions className='instruction'>하단의 텍스트를 입력해 활동을 계획해보세요</Instructions>
-      <VoiceRecord>
-        <RecordButton>
-          <MicIcon />
-        </RecordButton>
-      </VoiceRecord>
-      <TextSection>
-        <TextContainer value={content} onChange={(e)=> {setContent(e.currentTarget.value)}} placeholder='오늘은 무엇을 하고 싶나요?' />
-      </TextSection>
-      {content === "" ? <DisabledButton>입력하기</DisabledButton>: <SubmitButton onClick={handleSubmit}>입력하기</SubmitButton>}
-    </PageBody>
-  </Wrapper>
-</>
-)
-}
-export default TextPage
+      //getKeywords(content, navigate);
+    }, 2000);
+  };
+  return (
+    <>
+      <Wrapper>
+        {isLoading && <Loading loadingText="룰렛을 생성중입니다..." />}
+        <PageBody>
+          <SliderButton
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+          <Instructions className="instruction">
+            하단의 텍스트를 입력해 활동을 계획해보세요
+          </Instructions>
+          <VoiceRecord>
+            <RecordButton>
+              <MicIcon />
+            </RecordButton>
+          </VoiceRecord>
+          <TextSection>
+            <TextContainer
+              value={content}
+              onChange={(e) => {
+                setContent(e.currentTarget.value);
+              }}
+              placeholder="오늘은 무엇을 하고 싶나요?"
+            />
+          </TextSection>
+          {content === "" ? (
+            <DisabledButton>입력하기</DisabledButton>
+          ) : (
+            <SubmitButton onClick={handleSubmit}>입력하기</SubmitButton>
+          )}
+        </PageBody>
+      </Wrapper>
+    </>
+  );
+};
+export default TextPage;
 
 const PageBody = styled.div`
   display: flex;
@@ -64,7 +79,7 @@ const Instructions = styled.div`
 `;
 
 const VoiceRecord = styled(PageBody)`
-  margin-bottom : 75px;
+  margin-bottom: 75px;
 `;
 const RecordButton = styled.div`
   display: flex;
@@ -74,10 +89,10 @@ const RecordButton = styled.div`
   height: 149.465px;
   border-radius: 100px;
   flex-shrink: 0;
-  background: linear-gradient(164deg, #FFEC44 12.46%, #FFB800 88.89%);
-  border: 4.118px solid #FFEE5F;
+  background: linear-gradient(164deg, #ffec44 12.46%, #ffb800 88.89%);
+  border: 4.118px solid #ffee5f;
   box-shadow: 0px 5px 10px 0px rgba(255, 138, 0, 0.25);
-  `;
+`;
 
 const MicIcon = styled.div`
   display: flex;
@@ -91,15 +106,17 @@ const MicIcon = styled.div`
 
 const TextSection = styled.div`
   position: relative;
+  font-family: "Pretendard";
 `;
 
 const TextContainer = styled.textarea`
+  font-family: "Pretendard";
   width: 306px;
   height: 250.775px;
   flex-shrink: 0;
   border-radius: 10px;
-  border: 1px solid var(--gray1, #CACDD4);
-  background: var(--icon-color, #FFF);
+  border: 1px solid var(--gray1, #cacdd4);
+  background: var(--icon-color, #fff);
   resize: none;
   outline: none;
   font-size: 15px;
@@ -115,13 +132,13 @@ const SubmitButton = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  border: 1px solid var(--strok_1, #CFCFCF);
+  border: 1px solid var(--strok_1, #cfcfcf);
   background: var(--black, #000);
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
 `;
 
 const DisabledButton = styled(SubmitButton)`
-  background: var(--gray1, #CACDD4);
+  background: var(--gray1, #cacdd4);
   cursor: none;
 `;
