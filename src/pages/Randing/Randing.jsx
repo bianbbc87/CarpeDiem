@@ -26,8 +26,8 @@ export default function Randing() {
 
   const getITData = async () => {
     try {
-      const response = await apiClient.get("경로");
-
+      const response = await apiClient.get(`info/getHome`);
+      console.log("성공 : ", response);
       navigate("/IT", { state: response });
     } catch (error) {
       console.log("알쓸신잡 error", error);
@@ -47,7 +47,7 @@ export default function Randing() {
             <CarpediemText />
           </StyledParagraph>
         </div>
-        <BlackButton onClick={getTest}>오늘의 알쓸신잡</BlackButton>
+        <BlackButton onClick={getITData}>오늘의 알쓸신잡</BlackButton>
         <YellowButtonR onClick={handleVoice}>
           <Carpediem />
         </YellowButtonR>
