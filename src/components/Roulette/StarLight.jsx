@@ -14,7 +14,6 @@ const Wrapper = styled.div`
   max-width: 390px;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
 `;
 
 const Stars = styled.div`
