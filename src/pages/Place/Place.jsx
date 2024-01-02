@@ -13,12 +13,12 @@ export default function Place() {
   const [Place, setPlace] = useState("");
 
   const location = useLocation();
-  /*
-  const keyword = location.state.place;
-  */
-  const keyword = "빙하 탐험";
+  // 데이터 받아오기
+  const Data = location.state || null;
+  console.log("keyword Data : ", Data);
+
   useEffect(() => {
-    setPlace(keyword);
+    setPlace(Data);
 
     // 일정 시간이 지난 후에 이미지를 변경
     const intervalId = setInterval(() => {

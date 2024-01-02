@@ -132,7 +132,7 @@ const MapContainer = ({ searchPlace }) => {
             </Circles>
           </>
         ) : (
-          <PlaceBox>추천 장소가 없습니다 :{"("}</PlaceBox>
+          <PlaceBox>추천 장소 데이터가 없습니다 :{"("}</PlaceBox>
         )}
       </div>
       <AnotherButton to="/voice-recognition">
