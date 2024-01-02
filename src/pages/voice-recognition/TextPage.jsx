@@ -4,15 +4,23 @@ import SliderButton from '../../components/voice-recognition/SlideButton';
 import NotiBalloon from '../../assets/images/notificate_balloon.svg'
 import Pen from '@/assets/images/Pen.svg'
 import { useState } from 'react';
+import Loading from '../../components/Loading/Loading';
+import { useNavigate } from 'react-router-dom';
 
 
 const TextPage = () => {
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const [content, setContent] = useState("");
   const [currentPage, setCurrentPage] = useState("text");
-
+  const handleSubmit = async () => {
+    setIsLoading(true);
+    //getRouletteData(transcript, navigate);
+  }
 return (
 <>
   <Wrapper>
+  {isLoading && <Loading loadingText="룰렛을 생성중입니다..." />}
     <PageBody>
       <SliderButton currentPage={currentPage} setCurrentPage={setCurrentPage} />
       <Instructions className='instruction'>하단의 텍스트를 입력해 활동을 계획해보세요</Instructions>
@@ -24,7 +32,8 @@ return (
       <TextSection>
         <TextContainer value={content} onChange={(e)=> {setContent(e.currentTarget.value)}} />
       </TextSection>
-      <SubmitButton>입력하기</SubmitButton>
+      {content === "" ? <DisabledButton>입력하기</DisabledButton>: <SubmitButton onClick={handleSubmit}>입력하기</SubmitButton>}
+
       </PageBody>
   </Wrapper>
 </>
@@ -96,6 +105,8 @@ const TextContainer = styled.textarea`
 `;
 
 const SubmitButton = styled.div`
+  position: fixed;
+  bottom: 53px;
   display: flex;
   width: 336px;
   height: 51px;
@@ -105,4 +116,10 @@ const SubmitButton = styled.div`
   border: 1px solid var(--strok_1, #CFCFCF);
   background: var(--black, #000);
   color: #FFFFFF;
+  cursor: pointer;
+`;
+
+const DisabledButton = styled(SubmitButton)`
+  background: var(--gray1, #CACDD4);
+  cursor: none;
 `;
