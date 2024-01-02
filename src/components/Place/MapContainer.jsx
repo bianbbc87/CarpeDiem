@@ -35,7 +35,6 @@ const MapContainer = ({ searchPlace }) => {
         const container = document.getElementById("myMap");
         const options = {
           center: currentCoordinate,
-          radius: 10000,
           level: 3,
           sort: kakao.maps.services.SortBy.DISTANCE,
         };
@@ -45,7 +44,6 @@ const MapContainer = ({ searchPlace }) => {
         const ps = new kakao.maps.services.Places();
         ps.keywordSearch(searchPlace, placesSearchCB, {
           location: currentCoordinate,
-          radius: 10000,
           sort: kakao.maps.services.SortBy.DISTANCE,
         });
 
