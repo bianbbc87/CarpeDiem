@@ -27,8 +27,8 @@ export default function IT() {
       <ITContainer>
         <GroomImage />
         <PersonImage />
-        <ITTitle>{data[0].title}</ITTitle>
-        <ITContent>{data[1].content}</ITContent>
+        <ITTitle>{data.title}</ITTitle>
+        <ITContent>{data.content}</ITContent>
         <YellowButton onClick={handleVoice}>
           <Carpediem />
         </YellowButton>
