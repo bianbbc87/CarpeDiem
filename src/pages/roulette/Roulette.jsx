@@ -2,7 +2,6 @@ import { Wheel } from "react-custom-roulette";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import StarLight from "@/components/Roulette/StarLight";
-import { getPlaceData } from "@/api/Roulette/GetPlace";
 import {
   RouletteWrapper,
   SpinBtn,
@@ -133,7 +132,9 @@ function Roulette() {
 
   const handlePostPlace = async () => {
     console.log("option : ", Data[prizeNumber].option);
-    try {
+    // 데이터 전송
+    navigate("/test", { state: Data[prizeNumber].option });
+    /*try {
       const keyword = await getPlaceData({ option: Data[prizeNumber].option });
       console.log("roulette key data: ", keyword);
 
@@ -141,7 +142,7 @@ function Roulette() {
       navigate("/place", { state: { keyword: keyword } });
     } catch (error) {
       console.error("장소 불러오기 실패 error: ", error);
-    }
+    } */
   };
 
   return (
