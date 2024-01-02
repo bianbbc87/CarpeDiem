@@ -1,7 +1,6 @@
 import { Wheel } from "react-custom-roulette";
 import { useState, useEffect } from "react";
 import { apiClient } from "@/api/ApiClient";
-import Loading1 from "@/components/Loading/Loading";
 import StarLight from "@/components/Roulette/StarLight";
 import {
   RouletteWrapper,
@@ -9,6 +8,7 @@ import {
   RouletteTool,
   RoulettePin,
   ResultBox,
+  PrevBox,
 } from "@/styles/styles";
 import "@/styles//Roulette.css";
 
@@ -82,23 +82,7 @@ function Roulette() {
   const [mustSpin, setMustSpin] = useState(false); //룰렛이 회전 애니메이션을 시작
   const [prizeNumber, setPrizeNumber] = useState(0); //당첨 인덱스
   const [spinState, setSpinState] = useState(false);
-  const [searchData, setSearchData] = useState("");
   const [spinText, setSpinText] = useState("룰렛 돌리기");
-
-  // get method
-  const getRouletteData = async () => {
-    try {
-      const response = await apiClient.get(`/api/v1/user/my-event`, searchData);
-
-      setData(response);
-    } catch (error) {
-      console.error("Error fetching data", error);
-    }
-  };
-
-  useEffect(() => {
-    getRouletteData();
-  }, []);
 
   useEffect(() => {
     setMustSpin(false);
@@ -108,7 +92,7 @@ function Roulette() {
   // 룰렛 돌리기 함수
   const handleSpinClick = () => {
     if (!mustSpin) {
-      setPrizeNumber(Math.floor(Math.random() * 4));
+      setPrizeNumber(Math.floor(Math.random() * Data.length));
       setMustSpin(true);
 
       // 3초 후
@@ -126,8 +110,6 @@ function Roulette() {
 
   return (
     <RouletteWrapper>
-      <Loading1 />
-      <StarLight />
       <RouletteTool>
         <RoulettePin />
         <Wheel
@@ -145,18 +127,19 @@ function Roulette() {
         />
       </RouletteTool>
       {!spinState ? (
-        <div></div>
+        <div>
+          <PrevBox></PrevBox>
+        </div>
       ) : (
         <div>
           <ResultBox>
-            <b>활동 내용</b>
-            <br />
-            {Data[prizeNumber].option}
+            <span>{Data[prizeNumber].option}</span>
           </ResultBox>
         </div>
       )}
       <SpinBtn onClick={handleSpinClick}>{spinText}</SpinBtn>
       <div>(test)선택되었습니다 : {prizeNumber}</div>
+      <StarLight />
     </RouletteWrapper>
   );
 }
