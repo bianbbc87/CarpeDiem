@@ -167,12 +167,12 @@ const PlaceBox = styled.div`
   flex-direction: column;
   position: relative;
 
-  width: 200px;
-  height: 140px;
+  width: 280px;
+  height: 180px;
   border-radius: 10px;
   border: 1px solid var(--gray1, #cacdd4);
   padding: 15px;
-  font-size: 13px;
+  font-size: 14px;
 `;
 
 const PlaceNullBox = styled.div`
@@ -183,12 +183,12 @@ const PlaceNullBox = styled.div`
   align-items: center;
   position: relative;
   color: #8a898e;
-  width: 200px;
-  height: 140px;
+  width: 280px;
+  height: 180px;
   border-radius: 10px;
   border: 1px solid var(--gray1, #cacdd4);
   padding: 15px;
-  font-size: 12px;
+  font-size: 14px;
 `;
 
 const AdressText = styled.div`
@@ -242,7 +242,8 @@ const Circle = styled.div`
 `;
 
 const AnotherButton = styled(Link)`
-  width: 180px;
+  width: 280px;
+  height: 25px;
   display: flex;
   justify-content: center;
   color: white;
@@ -253,9 +254,9 @@ const AnotherButton = styled(Link)`
   align-items: center;
   text-decoration: none;
   text-align: center;
-  font-size: 14px;
+  font-size: 15px;
   font-style: normal;
   font-weight: 800;
 
-  margin-top: 50px;
+  margin-top: 80px;
 `;
