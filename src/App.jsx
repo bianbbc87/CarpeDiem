@@ -19,7 +19,7 @@ function App() {
         <Route path="/voice-recognition" element={<VoicePage />} />
         <Route path="/text" element={<TextPage />} />
         <Route path="/roulette" element={<Roulette />} />
-        <Route path="/Randing" element={ <Randing />} />
+        <Route path="/Randing" element={<Randing />} />
         <Route path="/IT" element={<IT />} />
       </Routes>
     </>
