@@ -1,19 +1,21 @@
-import styled from 'styled-components'
-import 'regenerator-runtime'
-import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import { Wrapper } from '@/styles/styles';
-import Mic from '@/assets/images/mic.svg'
-import SmallMic from '@/assets/images/mic_s.svg'
-import NotiBalloon from '@/assets/images/notificate_balloon.svg'
-import { useState } from 'react';
-import SliderButton from '@/components/voice-recognition/SlideButton';
-import { getPrompt } from '@/api/getKeywords';
-import { useNavigate } from 'react-router-dom';
-import Loading from '@/components/Loading/Loading';
-import RecordingGIF from '@/assets/images/Spinner/recording.gif';
-import PulseGIF from '@/assets/images/Spinner/pulse.gif';
-import Reset from '@/assets/images/voice-recognition/reset.svg';
-import TextPage from './TextPage';
+import styled from "styled-components";
+import "regenerator-runtime";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
+import { Wrapper } from "@/styles/styles";
+import Mic from "@/assets/images/mic.svg";
+import SmallMic from "@/assets/images/mic_s.svg";
+import NotiBalloon from "@/assets/images/notificate_balloon.svg";
+import { useState } from "react";
+import SliderButton from "@/components/voice-recognition/SlideButton";
+import { getPrompt } from "@/api/getKeywords";
+import { useNavigate } from "react-router-dom";
+import Loading from "@/components/Loading/Loading";
+import RecordingGIF from "@/assets/images/voice-recognition/smallMic.svg";
+import PulseGIF from "@/assets/images/Spinner/pulse.gif";
+import Reset from "@/assets/images/voice-recognition/reset.svg";
+import TextPage from "./TextPage";
 
 const VoicePage = () => {
   const navigate = useNavigate();
@@ -30,41 +32,64 @@ const VoicePage = () => {
   const handleSubmit = async () => {
     setIsLoading(true);
     getPrompt(transcript, navigate);
-}
-return (
-  <>
-    {isVoice ?
-    <Wrapper>
-      {isLoading && <Loading loadingText="룰렛을 생성중입니다..." />}
-      <PageBody>
-      <SliderButton isVoice={isVoice} setIsVoice={setIsVoice} />
-      <Instructions className='instruction'>하단의 버튼을 눌러 오늘의 활동을 계획해보세요</Instructions>
-      <VoiceRecord>
-        <RecordButton onClick={toggleListening}>
-          {listening ? <PulseContainer><img src={PulseGIF} className='pulseGIF'></img></PulseContainer> : <MicIcon />}
-        </RecordButton>
-      </VoiceRecord>
-      <TextSection>
-        <TextContainer>
-          <TextInput className="transcript" value={transcript} onChange={() => {}} />
-          {listening ? <SpinnerContainer><img src={RecordingGIF} className='recordingGIF'></img></SpinnerContainer> : <SmallMicIcon />}
-        </TextContainer>
-      </TextSection>
-      <ResetSection onClick={resetTranscript}>
-        <span>초기화 하기</span>
-        <ResetIcon />
-      </ResetSection>
-      {transcript === "" ? <DisabledButton>룰렛 만들러 가기</DisabledButton>: <SubmitButton onClick={handleSubmit}>룰렛 만들러 가기</SubmitButton>}
-      </PageBody>
-    </Wrapper> :
-    <TextPage />
-    }
-    
-
-  </>
-)
-}
-export default VoicePage
+  };
+  return (
+    <>
+      {isVoice ? (
+        <Wrapper>
+          {isLoading && <Loading loadingText="룰렛을 생성중입니다..." />}
+          <PageBody>
+            <SliderButton isVoice={isVoice} setIsVoice={setIsVoice} />
+            <Instructions className="instruction">
+              하단의 버튼을 눌러 오늘의 활동을 계획해보세요
+            </Instructions>
+            <VoiceRecord>
+              <RecordButton onClick={toggleListening}>
+                {listening ? (
+                  <PulseContainer>
+                    <img src={PulseGIF} className="pulseGIF"></img>
+                  </PulseContainer>
+                ) : (
+                  <MicIcon />
+                )}
+              </RecordButton>
+            </VoiceRecord>
+            <TextSection>
+              <TextContainer>
+                <TextInput
+                  className="transcript"
+                  value={transcript}
+                  onChange={() => {}}
+                />
+                {listening ? (
+                  <SpinnerContainer>
+                    <img src={RecordingGIF} className="recordingGIF"></img>
+                  </SpinnerContainer>
+                ) : (
+                  <SmallMicIcon />
+                )}
+              </TextContainer>
+            </TextSection>
+            <ResetSection onClick={resetTranscript}>
+              <span>초기화 하기</span>
+              <ResetIcon />
+            </ResetSection>
+            {transcript === "" ? (
+              <DisabledButton>룰렛 만들러 가기</DisabledButton>
+            ) : (
+              <SubmitButton onClick={handleSubmit}>
+                룰렛 만들러 가기
+              </SubmitButton>
+            )}
+          </PageBody>
+        </Wrapper>
+      ) : (
+        <TextPage />
+      )}
+    </>
+  );
+};
+export default VoicePage;
 
 const PageBody = styled.div`
   display: flex;
