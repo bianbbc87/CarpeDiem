@@ -1,7 +1,5 @@
 import Spinner from "@/assets/images/Spinner/Spinner2.gif";
 import styled from "styled-components";
-import { apiClient } from "@/api/ApiClient";
-import { useState } from "react";
 
 const Wrapper = styled.div`
   position: fixed;
@@ -31,7 +29,7 @@ const LoadingContainer = styled.div`
   line-height: normal;
 `;
 
-export default function Loading(loadingText) {
+export default function Loading({loadingText}) {
   // 룰렛으로 데이터 전달
   return (
     <Wrapper>
