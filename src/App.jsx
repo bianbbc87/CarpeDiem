@@ -4,7 +4,7 @@ import TestPage from "@/TestPage.jsx";
 import Place from "./pages/Place/Place.jsx";
 import VoicePage from "@/pages/voice-recognition/VoicePage";
 import TextPage from "./pages/voice-recognition/TextPage";
-import Roulette from "@/pages/roulette/roulette";
+import Roulette from "@/pages/roulette/Roulette";
 import Test from "@/pages/test/test.jsx";
 import Home from "@/pages/Home/Home";
 import Randing from "@/pages/Randing/Randing";
