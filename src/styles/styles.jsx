@@ -44,14 +44,14 @@ export const SpinBtn = styled.button`
   position: absolute;
   top: 720px;
   display: flex;
-  width: 338px;
+  width: ${(props) => props.width || "338px"};
   height: 55px;
   align-items: center;
   justify-content: center;
   border-radius: 8.213px;
-  border: 1px solid var(--strok_1, #cfcfcf);
-  background: var(--black, #000);
-  color: #fff;
+  border: 1px solid #cfcfcf;
+  background-color: ${(props) => props.bg || "#000"};
+  color: ${(props) => props.color || "#fff"};
   font-family: Roboto;
   font-size: 18px;
   font-weight: 800;
