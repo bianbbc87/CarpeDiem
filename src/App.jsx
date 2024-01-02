@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import TestPage from "@/TestPage.jsx";
-import Roulette from "@/components/test/roulette/roulette";
+import Roulette from "@/pages/roulette/roulette";
 
 function App() {
   return (
