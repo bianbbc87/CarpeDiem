@@ -11,10 +11,12 @@ import { getRouletteData } from '@/api/ApiClient';
 import { useNavigate } from 'react-router-dom';
 import Loading from '@/components/Loading/Loading';
 import RecordingGIF from '@/assets/images/Spinner/recording.gif';
+import PulseGIF from '@/assets/images/Spinner/pulse.gif';
+import Reset from '@/assets/images/voice-recognition/reset.svg';
 
 const VoicePage = () => {
   const navigate = useNavigate();
-  const { transcript, listening } = useSpeechRecognition();
+  const { transcript, listening, resetTranscript } = useSpeechRecognition();
   const [currentPage, setCurrentPage] = useState("voice");
   const [isLoading, setIsLoading] = useState(false);
   const toggleListening = () => {
@@ -37,7 +39,7 @@ return (
       <Instructions className='instruction'>하단의 버튼을 눌러 오늘의 활동을 계획해보세요</Instructions>
       <VoiceRecord>
         <RecordButton onClick={toggleListening}>
-          <MicIcon />
+          {listening ? <PulseContainer><img src={PulseGIF} className='pulseGIF'></img></PulseContainer> : <MicIcon />}
         </RecordButton>
       </VoiceRecord>
       <TextSection>
@@ -46,6 +48,10 @@ return (
           {listening ? <SpinnerContainer><img src={RecordingGIF} className='recordingGIF'></img></SpinnerContainer> : <SmallMicIcon />}
         </TextContainer>
       </TextSection>
+      <ResetSection onClick={resetTranscript}>
+        <span>초기화 하기</span>
+        <ResetIcon />
+      </ResetSection>
       <SubmitButton onClick={handleSubmit}>전송하기</SubmitButton>
       </PageBody>
     </Wrapper>
@@ -88,6 +94,18 @@ const RecordButton = styled.div`
   background: linear-gradient(164deg, #7CE0FF 12.46%, #0047FF 88.89%);
   border: 4.118px solid #72D3FF;
   box-shadow: 0px 5px 10px 0px rgba(36, 0, 255, 0.25);
+  cursor: pointer;
+  `;
+
+const PulseContainer = styled.div`
+  width: 72.369px;
+  height: 72.369px;
+  flex-shrink: 0;
+  .pulseGIF {
+    width: 72.369px;
+    height: 72.369px;
+    flex-shrink: 0;
+  }
 `;
 
 const MicIcon = styled.div`
@@ -156,6 +174,25 @@ const SmallMicIcon = styled.div`
   background: no-repeat center url(${SmallMic});
 `;
 
+const ResetSection = styled.div`
+display: flex;
+justify-content: space-between;
+width: 91.5px;
+height: 18px;
+margin-top: 29px;
+flex-shrink: 0;
+color: #8A898E;
+font-size: 15px;
+cursor: pointer;
+`;
+
+const ResetIcon = styled.div`
+  background: no-repeat center url(${Reset});
+  fill: #8A898E;
+  width: 18px;
+  height: 18px;
+`;
+
 const SubmitButton = styled.div`
   position: fixed;
   bottom: 53px;
@@ -168,4 +205,5 @@ const SubmitButton = styled.div`
   border: 1px solid var(--strok_1, #CFCFCF);
   background: var(--black, #000);
   color: #FFFFFF;
+  cursor: pointer;
 `;
