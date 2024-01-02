@@ -32,7 +32,8 @@ return (
       <TextSection>
         <TextContainer value={content} onChange={(e)=> {setContent(e.currentTarget.value)}} />
       </TextSection>
-      <SubmitButton>입력하기</SubmitButton>
+      {content === "" ? <DisabledButton>입력하기</DisabledButton>: <SubmitButton onClick={handleSubmit}>입력하기</SubmitButton>}
+
       </PageBody>
   </Wrapper>
 </>
@@ -104,6 +105,8 @@ const TextContainer = styled.textarea`
 `;
 
 const SubmitButton = styled.div`
+  position: fixed;
+  bottom: 53px;
   display: flex;
   width: 336px;
   height: 51px;
@@ -113,4 +116,10 @@ const SubmitButton = styled.div`
   border: 1px solid var(--strok_1, #CFCFCF);
   background: var(--black, #000);
   color: #FFFFFF;
+  cursor: pointer;
+`;
+
+const DisabledButton = styled(SubmitButton)`
+  background: var(--gray1, #CACDD4);
+  cursor: none;
 `;

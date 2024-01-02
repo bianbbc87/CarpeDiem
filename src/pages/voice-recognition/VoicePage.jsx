@@ -52,7 +52,7 @@ return (
         <span>초기화 하기</span>
         <ResetIcon />
       </ResetSection>
-      <SubmitButton onClick={handleSubmit}>전송하기</SubmitButton>
+      {transcript === "" ? <DisabledButton>룰렛 만들러 가기</DisabledButton>: <SubmitButton onClick={handleSubmit}>룰렛 만들러 가기</SubmitButton>}
       </PageBody>
     </Wrapper>
 
@@ -206,4 +206,9 @@ const SubmitButton = styled.div`
   background: var(--black, #000);
   color: #FFFFFF;
   cursor: pointer;
+`;
+
+const DisabledButton = styled(SubmitButton)`
+  background: var(--gray1, #CACDD4);
+  cursor: none;
 `;
