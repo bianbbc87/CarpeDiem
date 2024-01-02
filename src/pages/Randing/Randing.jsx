@@ -11,7 +11,6 @@ import {
 import { dummy } from "@/api/ITDummy";
 import "@/styles//Randing.css";
 import { useNavigate } from "react-router-dom";
-import { apiClient } from "@/api/ApiClient";
 
 export default function Randing() {
   const navigate = useNavigate();
@@ -31,7 +30,7 @@ export default function Randing() {
   const getTest = () => {
     navigate("/IT", { state: data });
   };
-
+  /*
   const getITData = async () => {
     try {
       const response = await fetch("http://3.39.187.248/info/getHome");
@@ -40,6 +39,7 @@ export default function Randing() {
       console.error("Error fetching data:", error);
     }
   };
+  */
 
   const handleVoice = () => {
     navigate("/voice-recognition");
