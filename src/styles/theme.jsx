@@ -11,6 +11,7 @@ export const theme = {
   green: "#34BA05",
   white: "#FFFFFF",
   gray: "#DDDDDD",
+  blue: "#00A3FF",
 };
 
 // 전역 색상 지정(다크 모드, 화이트 모드 등 속성 설정용)
