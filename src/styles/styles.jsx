@@ -140,9 +140,10 @@ export const ITTitle = styled.div`
 
 export const ITContent = styled.div`
   margin-top: 37px;
-  width: 80%;
+  width: 78%;
   height: 18%;
   display: flex;
+  padding: 15px;
   justify-content: center;
   align-items: center;
   border: 1px solid gray;
