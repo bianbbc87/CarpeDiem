@@ -11,6 +11,9 @@ export const Sample = styled.div`
   background-color: ${theme.yellow};
 `;
 
+/**  메인 페이지 스타일 **/
+// ...
+
 /**  룰렛 페이지 **/
 export const Wrapper = styled.div`
   position: relative;
@@ -111,7 +114,6 @@ export const PrevBox = styled.div`
   font-weight: 600;
   text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff;
 `;
-
 /**  서브 페이지1 스타일 **/
 // ...
 
