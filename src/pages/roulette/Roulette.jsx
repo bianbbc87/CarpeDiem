@@ -77,7 +77,7 @@ function Roulette() {
   const handlePostPlace = async () => {
     console.log("option : ", Data[prizeNumber].option);
     // 데이터 전송
-    navigate("/test", { state: Data[prizeNumber].option });
+    navigate("/place", { state: Data[prizeNumber].option });
     /*try {
       const keyword = await getPlaceData({ option: Data[prizeNumber].option });
       console.log("roulette key data: ", keyword);
