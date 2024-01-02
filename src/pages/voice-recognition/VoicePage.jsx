@@ -7,13 +7,12 @@ import SmallMic from '@/assets/images/mic_s.svg'
 import NotiBalloon from '@/assets/images/notificate_balloon.svg'
 import { useState } from 'react';
 import SliderButton from '@/components/voice-recognition/SlideButton';
-import { getRouletteData } from '@/api/ApiClient';
+import { getKeywords, getKeywordsTest } from '@/api/getKEywords';
 import { useNavigate } from 'react-router-dom';
 import Loading from '@/components/Loading/Loading';
 import RecordingGIF from '@/assets/images/Spinner/recording.gif';
 import PulseGIF from '@/assets/images/Spinner/pulse.gif';
 import Reset from '@/assets/images/voice-recognition/reset.svg';
-import { getRouletteDataTest } from '../../api/ApiClient';
 
 const VoicePage = () => {
   const navigate = useNavigate();
@@ -30,8 +29,8 @@ const VoicePage = () => {
   const handleSubmit = async () => {
     setIsLoading(true);
     setTimeout(() => {
-      getRouletteDataTest(transcript, navigate);
-    //getRouletteData(transcript, navigate);
+      getKeywordsTest(transcript, navigate);
+    //getKeywords(transcript, navigate);
   }, 2000);
 }
 return (
