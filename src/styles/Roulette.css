@@ -1,16 +1,17 @@
-.bhdLno {
-  width: 50vw;
-  max-width: 445px;
-  height: 50vw;
-  max-height: 445px;
+body .bhdLno {
+  margin-top: -63px;
+  width: 82%;
+  max-width: 360px;
+  height: 67%;
+  max-height: 360px;
   object-fit: contain;
   flex-shrink: 0;
   z-index: 5;
   pointer-events: none;
+  border: transparent;
 }
 
-.iWaKfQ {
-  position: absolute;
+body .iWaKfQ {
   width: 100%;
   inset: 0px;
   display: flex;
@@ -19,4 +20,23 @@
   -webkit-box-align: center;
   align-items: center;
   transform: rotate(-106deg);
+}
+
+body .sc-bdfBwQ {
+  display: none;
+}
+
+body .fNcUgo {
+  position: absolute;
+  width: 100%;
+  inset: 0px;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.sc-eCssSg {
+  border: none;
 }
