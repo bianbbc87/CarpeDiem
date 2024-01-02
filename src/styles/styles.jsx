@@ -68,8 +68,8 @@ export const HomeImage = styled.div`
 `;
 
 export const StyledTitle = styled.div`
-  margin-top: 45px;
-  font-family: Nanum Pen;
+  margin-top: 20px;
+  font-family: 'Nanum Pen', cursive;
   font-size: 25px;
   line-height: 0.5;
   color: #333;
