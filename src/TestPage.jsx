@@ -14,19 +14,13 @@ export default function TestPage() {
       4. 스타일드 컴포넌트는 모두 통일 <Sample>경로 : `@/styles/styles`</Sample>
       <br />
       <h3>다운로드 패키지</h3>
-      공용 : react-router-dom, react-redux, @redux-toolkit, react-cookie, axios
-      <br />
-      캘린더 : react-calendar, moment <br />
-      사진 : react-multiple-image-uploader, @syncfusion/ej2-react-calendars,
-      file-saver date-fns, <br />
-      아이콘 : react-icons, react-datepicker
-      <br />
-      기타 : qrcode.react, html2canvas
+      공용 : react-router-dom, axios 기타 : react-custom-roulette,
+      react-speech-recognition
       <br />
       <b>이외 필요한 라이브러리들 설치해주세요.</b>
       <br />
       <br />
-      라우터 세팅 완료, 리덕스 세팅 완료, baseURL 세팅 완료, eslint 세팅 완료
+      라우터 세팅 완료, baseURL 세팅 완료, eslint 세팅 완료
       <br />
       <h3>공용 스타일</h3>
       5. 기본 폰트 Noto Sans KR, 폰트 사이즈 16px
