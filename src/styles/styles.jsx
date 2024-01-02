@@ -4,6 +4,7 @@ import R_Tool from "@/assets/images/Roulette/RouletteTool.svg";
 import R_Pin from "@/assets/images/Roulette/RoulettePin.svg";
 import Result from "@/assets/images/Roulette/ResultBox.svg";
 import Prev from "@/assets/images/Roulette/PrevBox.svg";
+import Logo from "@/assets/images/IT/logo.svg";
 import ITLogo from "@/assets/images/IT/logo2.svg";
 import ITPerson from "@/assets/images/IT/Person.svg";
 import Groom from "@/assets/images/IT/goorm.svg";
@@ -38,6 +39,42 @@ const InUp = (top) => keyframes`
 /**  샘플 페이지 스타일 **/
 export const Sample = styled.div`
   background-color: ${theme.yellow};
+`;
+/**  첫 페이지 스타일 **/
+export const Page = styled.div`
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  min-height: 99vh;
+  display: flex;
+  flex-direction: column;
+  max-width: 390px;
+  border: 1px solid blue;
+  background-color: #00a3ff;
+  align-items: center;
+`;
+
+export const HomeImage = styled.div`
+  margin-top: 104px;
+  width: 155px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  background-image: url(${Logo});
+  background-repeat: no-repeat;
+
+  animation: ${slideInUp("40%")} 0.8s ease-out;
+`;
+
+export const StyledTitle = styled.div`
+  margin-top: 45px;
+  font-family: Nanum Pen;
+  font-size: 25px;
+  line-height: 0.5;
+  color: #333;
+  text-align: center;
+  animation: ${slideInUp("70%")} 0.8s ease-out;
 `;
 
 /**  랜딩 페이지 스타일 **/
