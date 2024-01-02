@@ -4,15 +4,23 @@ import SliderButton from '../../components/voice-recognition/SlideButton';
 import NotiBalloon from '../../assets/images/notificate_balloon.svg'
 import Pen from '@/assets/images/Pen.svg'
 import { useState } from 'react';
+import Loading from '../../components/Loading/Loading';
+import { useNavigate } from 'react-router-dom';
 
 
 const TextPage = () => {
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const [content, setContent] = useState("");
   const [currentPage, setCurrentPage] = useState("text");
-
+  const handleSubmit = async () => {
+    setIsLoading(true);
+    //getRouletteData(transcript, navigate);
+  }
 return (
 <>
   <Wrapper>
+  {isLoading && <Loading loadingText="룰렛을 생성중입니다..." />}
     <PageBody>
       <SliderButton currentPage={currentPage} setCurrentPage={setCurrentPage} />
       <Instructions className='instruction'>하단의 텍스트를 입력해 활동을 계획해보세요</Instructions>
