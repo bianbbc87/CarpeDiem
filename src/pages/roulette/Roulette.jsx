@@ -1,6 +1,6 @@
 import { Wheel } from "react-custom-roulette";
 import { useState, useEffect } from "react";
-import { apiClient } from "@/api/ApiClient";
+import { useNavigate, useLocation } from "react-router-dom";
 import StarLight from "@/components/Roulette/StarLight";
 import {
   RouletteWrapper,
@@ -13,81 +13,48 @@ import {
 import "@/styles//Roulette.css";
 
 function Roulette() {
-  //더미 데이터
-  const bg_color = ["#00A3FF", "#FFB13D"];
-  const Data = [
-    {
-      option: "SAMSUNG 에어컨",
-    },
-    {
-      option: "꽝",
-    },
-    {
-      option: "Apple Vision Pro",
-    },
-    {
-      option: "LG TV",
-    },
-    {
-      option: "SAMSUNG 에어컨",
-    },
-    {
-      option: "꽝",
-    },
-    {
-      option: "Apple Vision Pro",
-    },
-    {
-      option: "LG TV",
-    },
-    {
-      option: "SAMSUNG 에어컨",
-    },
-    {
-      option: "꽝",
-    },
-    {
-      option: "Apple Vision Pro",
-    },
-    {
-      option: "LG TV",
-    },
-    {
-      option: "SAMSUNG 에어컨",
-    },
-    {
-      option: "꽝",
-    },
-    {
-      option: "Apple Vision Pro",
-    },
-    {
-      option: "LG TV",
-    },
-    {
-      option: "SAMSUNG 에어컨",
-    },
-    {
-      option: "꽝",
-    },
-    {
-      option: "Apple Vision Pro",
-    },
-    {
-      option: "LG TV",
-    },
-  ];
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // 데이터 받아오기
+  const data2 = location.state.data || null;
+  console.log("data2 : ", data2);
+
+  let key = 0;
+  const Data = data2.map(() => {
+    const value = data2[key++];
+    console.log("vaule", value);
+    return { option: value };
+  });
+
+  console.log("data : ", Data);
 
   const [data, setData] = useState([]);
   const [mustSpin, setMustSpin] = useState(false); //룰렛이 회전 애니메이션을 시작
   const [prizeNumber, setPrizeNumber] = useState(0); //당첨 인덱스
   const [spinState, setSpinState] = useState(false);
   const [spinText, setSpinText] = useState("룰렛 돌리기");
+  const [isFirstSpin, setIsFirstSpin] = useState(false);
 
   useEffect(() => {
     setMustSpin(false);
     setSpinState(false);
   }, [mustSpin]);
+
+  // 첫 번째 스핀
+  const handleFirstSpinClick = () => {
+    if (!mustSpin) {
+      setPrizeNumber(Math.floor(Math.random() * Data.length));
+      setMustSpin(true);
+
+      // 3초 후
+      setTimeout(() => {
+        setSpinState(true);
+        setSpinText("다시 돌리기");
+        setIsFirstSpin(true);
+      }, 3000);
+    }
+  };
 
   // 룰렛 돌리기 함수
   const handleSpinClick = () => {
@@ -98,7 +65,6 @@ function Roulette() {
       // 3초 후
       setTimeout(() => {
         setSpinState(true);
-        setSpinText("다시 돌리기");
       }, 3000);
     }
   };
@@ -106,6 +72,21 @@ function Roulette() {
   // 룰렛이 멈췄을 때
   const StopSpinning = () => {
     setMustSpin(false);
+  };
+
+  const handlePostPlace = async () => {
+    console.log("option : ", Data[prizeNumber].option);
+    // 데이터 전송
+    navigate("/test", { state: Data[prizeNumber].option });
+    /*try {
+      const keyword = await getPlaceData({ option: Data[prizeNumber].option });
+      console.log("roulette key data: ", keyword);
+
+      // 데이터 전송
+      navigate("/place", { state: { keyword: keyword } });
+    } catch (error) {
+      console.error("장소 불러오기 실패 error: ", error);
+    } */
   };
 
   return (
@@ -123,7 +104,7 @@ function Roulette() {
           outerBorderColor={["tranparent"]}
           textColors={["#000"]}
           fontSize={[15]}
-          backgroundColors={bg_color}
+          backgroundColors={["#00A3FF", "#FFB13D"]}
         />
       </RouletteTool>
       {!spinState ? (
@@ -137,7 +118,35 @@ function Roulette() {
           </ResultBox>
         </div>
       )}
-      <SpinBtn onClick={handleSpinClick}>{spinText}</SpinBtn>
+      {!isFirstSpin ? (
+        <>
+          <SpinBtn onClick={handleFirstSpinClick}>{spinText}</SpinBtn>
+        </>
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            width: "95%",
+            justifyContent: "space-between",
+          }}
+        >
+          <div style={{ flex: "0 0 45%" }}>
+            <SpinBtn onClick={handleSpinClick} width="45%">
+              {spinText}
+            </SpinBtn>
+          </div>
+          <div style={{ flex: "0 0 48%" }}>
+            <SpinBtn
+              onClick={handlePostPlace}
+              width="45%"
+              color="#000"
+              bg="#FFE03D"
+            >
+              추천장소 바로가기
+            </SpinBtn>
+          </div>
+        </div>
+      )}
       <div>(test)선택되었습니다 : {prizeNumber}</div>
       <StarLight />
     </RouletteWrapper>
