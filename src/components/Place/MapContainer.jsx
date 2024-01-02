@@ -8,7 +8,7 @@ const { kakao } = window;
 const MapContainer = ({ searchPlace }) => {
   const [Places, setPlaces] = useState([]);
   const [Index, setIndex] = useState(0);
-
+  const [isLoading, setIsLoading] = useState(true);
   const getCurrentCoordinate = async () => {
     return new Promise((res, rej) => {
       if (navigator.geolocation) {
@@ -29,13 +29,13 @@ const MapContainer = ({ searchPlace }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setIsLoading(true);
         const currentCoordinate = await getCurrentCoordinate();
         console.log(currentCoordinate);
 
         const container = document.getElementById("myMap");
         const options = {
           center: currentCoordinate,
-          level: 3,
           sort: kakao.maps.services.SortBy.DISTANCE,
         };
 
@@ -57,13 +57,14 @@ const MapContainer = ({ searchPlace }) => {
 
             map.setBounds(bounds);
             setPlaces(data);
+            setIsLoading(false);
           }
         }
       } catch (error) {
         console.error("Error fetching data:", error);
+        setIsLoading(false);
       }
     };
-
     fetchData();
   }, [searchPlace]);
 
@@ -75,6 +76,7 @@ const MapContainer = ({ searchPlace }) => {
   // 이미지 넘기기 버튼
   const onNextImage = () => {
     setIndex((prevIndex) => (prevIndex + 1) % placeLength);
+    console.log(Places);
   };
 
   const onPrevImage = () => {
@@ -91,7 +93,9 @@ const MapContainer = ({ searchPlace }) => {
     <PlacePageWrap>
       <div id="myMap"></div>
       <div id="result-list">
-        {Places.length > 0 ? (
+        {isLoading ? (
+          <PlaceNullBox>데이터를 불러오는 중입니다...</PlaceNullBox>
+        ) : Places.length > 0 ? (
           <>
             <PlaceWrap>
               <PrevNextButton
@@ -171,6 +175,7 @@ const MapContainer = ({ searchPlace }) => {
           <PlaceNullBox>추천 장소 데이터가 없습니다 :{"("}</PlaceNullBox>
         )}
       </div>
+
       <AnotherButton to="/voice-recognition">
         다른 룰렛 만들러 가기
       </AnotherButton>
