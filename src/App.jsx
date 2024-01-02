@@ -6,6 +6,7 @@ import VoicePage from "@/pages/voice-recognition/VoicePage";
 import TextPage from "./pages/voice-recognition/TextPage";
 import Roulette from "@/pages/roulette/roulette";
 import Test from "@/pages/test/test.jsx";
+import Home from "@/pages/Home/Home";
 import Randing from "@/pages/Randing/Randing";
 import IT from "@/pages/IT/IT";
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/voice-recognition" element={<VoicePage />} />
         <Route path="/text" element={<TextPage />} />
         <Route path="/roulette" element={<Roulette />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/Randing" element={<Randing />} />
         <Route path="/IT" element={<IT />} />
       </Routes>
