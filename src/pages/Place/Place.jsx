@@ -5,14 +5,20 @@ import { useEffect } from "react";
 import PlaceImage1 from "../../assets/images/Place/placeImage_building.png";
 import PlaceImage2 from "../../assets/images/Place/placeImage_amusement.png";
 import PlaceImage3 from "../../assets/images/Place/placeImage_tree.png";
+import { useLocation } from "react-router-dom";
 
 export default function Place() {
   const imgArray = [PlaceImage1, PlaceImage2, PlaceImage3]; // 장소 이미지 배열
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [Place, setPlace] = useState("");
 
+  const location = useLocation();
+  /*
+  const keyword = location.state.place;
+  */
+  const keyword = "빙하 탐험";
   useEffect(() => {
-    setPlace("유리 공예 공방");
+    setPlace(keyword);
 
     // 일정 시간이 지난 후에 이미지를 변경
     const intervalId = setInterval(() => {
@@ -49,7 +55,7 @@ const PlaceContainer = styled.div`
 const MainText = styled.div`
   font-size: 18px;
   font-weight: 600;
-  margin: 70px 0px 14px 22px;
+  margin: 30px 0px 14px 30px;
 `;
 
 const MainImage = styled.img`
